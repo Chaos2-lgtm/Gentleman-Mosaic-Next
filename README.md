@@ -13,6 +13,7 @@
 
 ## 介面預覽
 ![UI Demo](./assets/UI.PNG)
+![輸出示意圖](./assets/mosaic-output_GentlemanMosaic.png)
 
 ### v2.3.2 
 - 本次更新基於最新提交 `02ac597`：Overlay canvas for cursor & live-stroke
