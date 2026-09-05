@@ -58,7 +58,7 @@ _loaded_yolo_models: Dict[str, Any] = {}
 
 class UISettings(BaseModel):
     language: str = "zh"
-    theme: str = "dark"
+    theme: str = "system"
 
 
 def normalize_language(value: str) -> str:

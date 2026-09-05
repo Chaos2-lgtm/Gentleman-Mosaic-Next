@@ -19,7 +19,7 @@ set "PORT=7400"
 set "RELOAD=1"
 set "AUTO_INSTALL_DEPS=1"
 set "UI_LANG=zh"
-set "UI_THEME=light"
+set "UI_THEME=system"
 
 if exist "%CFG%" (
   for /f "usebackq tokens=1,* delims==" %%A in ("%CFG%") do (
