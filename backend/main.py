@@ -290,6 +290,7 @@ async def detect_nsfw(
             for r in results:
                 names = r.names
                 boxes = r.boxes
+                masks = getattr(r, "masks", None)
                 if boxes is not None and len(boxes) > 0:
                     for i in range(len(boxes)):
                         box_tensor = boxes.xyxy[i].cpu().numpy()
@@ -310,10 +311,17 @@ async def detect_nsfw(
                         w = max(1, x2 - x1)
                         h = max(1, y2 - y1)
 
+                        polygon = None
+                        if masks is not None and hasattr(masks, "xy") and i < len(masks.xy):
+                            raw_pts = masks.xy[i]
+                            if len(raw_pts) >= 3:
+                                polygon = [[round(float(pt[0]), 1), round(float(pt[1]), 1)] for pt in raw_pts]
+
                         out.append({
                             "class": cls_name,
                             "score": round(score, 3),
                             "box": [x1, y1, w, h],
+                            "polygon": polygon,
                             "model": model,
                         })
 
