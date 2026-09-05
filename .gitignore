@@ -32,4 +32,7 @@ stopping_process
 *.token
 *.key
 *apikey*
-apikey.txt
+apikey.txt
+models/*.pt
+models/*.onnx
+

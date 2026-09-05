@@ -107,14 +107,18 @@ if "%USE_VENV%"=="1" (
 
   set "PYTHON_EXE=!VENV_PY!"
 ) else (
-  call %PYTHON_CMD% -V >nul 2>nul && set "PYTHON_EXE=%PYTHON_CMD%"
-  if not defined PYTHON_EXE (
-    call py -3 -V >nul 2>nul && set "PYTHON_EXE=py -3"
-  )
-  if not defined PYTHON_EXE (
-    echo [ERROR] Python not found.
-    pause
-    exit /b 1
+  if exist "!PYTHON_CMD!" (
+    set "PYTHON_EXE=!PYTHON_CMD!"
+  ) else (
+    call "!PYTHON_CMD!" -V >nul 2>nul && set "PYTHON_EXE=!PYTHON_CMD!"
+    if not defined PYTHON_EXE (
+      call py -3 -V >nul 2>nul && set "PYTHON_EXE=py -3"
+    )
+    if not defined PYTHON_EXE (
+      echo [ERROR] Python not found.
+      pause
+      exit /b 1
+    )
   )
 )
 
