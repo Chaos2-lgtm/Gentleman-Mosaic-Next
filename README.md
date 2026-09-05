@@ -9,10 +9,12 @@
 本專案為開源社群傳承與現代化重構版本，特別感謝歷任開發者的心血結晶：
 1. **最初原創**：[leeprinxin/Gentleman-Mosaic](https://github.com/leeprinxin/Gentleman-Mosaic) —— 奠定「小畫家式塗抹＋單層套用」的核心體驗與直覺設計。
 2. **二次開發 (Forge 版)**：[yuuhouse/Gentleman-Mosaic-forge](https://github.com/yuuhouse/Gentleman-Mosaic-forge) —— 本專案由此版本 Fork 而來，優化了 UI 比例與即時筆刷效能。
-3. **Next 版 (本專案)**：[Chaos2-lgtm/Gentleman-Mosaic-Next](https://github.com/Chaos2-lgtm/Gentleman-Mosaic-Next) —— 於 v2.4.0 進行全面現代化架構升級，加入完全脫離 ComfyUI 的本機獨立 AI (YOLO-seg) 實例分割精確塗抹、0 相依獨立免安裝發布包、深淺主題切換與雙語系 i18n 支援。
+3. **Next 版 (本專案)**：[Chaos2-lgtm/Gentleman-Mosaic-Next](https://github.com/Chaos2-lgtm/Gentleman-Mosaic-Next) —— 於 v2.4.0 進行全面現代化架構升級，加入本機獨立 AI (YOLO-seg) 實例分割精確塗抹、0 相依獨立免安裝發布包、深淺主題切換。
+
+> **AI 技術致謝**：本專案 AI 視覺功能由 [Ultralytics](https://github.com/ultralytics/ultralytics) 的 YOLO 技術基礎提供支援（AI 模型推論基於社群開源預訓練權重）。
 
 ## 開發 / Vibe Coding 工具
-- **Google Antigravity**：接手後（v2.4.0+）全端架構重構、本地獨立 AI (YOLO-seg) 模型整合、雙語系 i18n 國際化、主題外觀系統與 0 相依獨立懶人發布包打包。
+- **Google Antigravity**：接手後（v2.4.0+）全端架構重構、本地獨立 AI (YOLO-seg) 模型整合、外觀主題系統與 0 相依獨立懶人發布包打包。
 - **Git**：用於比對版本差異、追蹤版本變更與版本發布。
 - **Chrome Headless**：用於執行 Canvas 操作體驗 benchmark，換算 FPS 與效能差異。
 
