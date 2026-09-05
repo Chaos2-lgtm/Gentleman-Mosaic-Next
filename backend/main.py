@@ -66,7 +66,10 @@ def normalize_language(value: str) -> str:
 
 
 def normalize_theme(value: str) -> str:
-    return "dark" if str(value).strip().lower() == "dark" else "light"
+    v = str(value).strip().lower()
+    if v in ("dark", "light", "system"):
+        return v
+    return "system"
 
 
 def read_launch_config() -> configparser.ConfigParser:
@@ -75,9 +78,9 @@ def read_launch_config() -> configparser.ConfigParser:
         return cfg
 
     try:
-        raw = LAUNCH_INI.read_text(encoding="utf-8-sig")
-    except UnicodeDecodeError:
-        raw = LAUNCH_INI.read_text(encoding="utf-8", errors="ignore")
+        raw = LAUNCH_INI.read_text(encoding="utf-8")
+    except Exception:
+        raw = LAUNCH_INI.read_text(encoding="gbk", errors="ignore")
 
     cfg.read_string(raw)
     return cfg
@@ -91,10 +94,10 @@ def write_launch_config(cfg: configparser.ConfigParser) -> None:
 def get_ui_settings_from_ini() -> dict:
     cfg = read_launch_config()
     language = "zh"
-    theme = "dark"
+    theme = "system"
     if cfg.has_section("ui"):
-        language = normalize_language(cfg.get("ui", "language", fallback="zh"))
-        theme = normalize_theme(cfg.get("ui", "theme", fallback="dark"))
+        language = normalize_language(cfg["ui"].get("language", "zh"))
+        theme = normalize_theme(cfg["ui"].get("theme", "system"))
     return {"language": language, "theme": theme}
 
 
