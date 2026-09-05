@@ -27,6 +27,9 @@ if exist "%CFG%" (
     set "V=%%~B"
     if defined K (
       if not "!K:~0,1!"=="[" if not "!K:~0,1!"==";" if not "!K:~0,1!"=="#" (
+        rem Trim trailing spaces
+        for /l %%a in (1,1,31) do if "!K:~-1!"==" " set "K=!K:~0,-1!"
+        for /l %%a in (1,1,31) do if "!V:~-1!"==" " set "V=!V:~0,-1!"
         for /f "tokens=* delims= " %%i in ("!K!") do set "K=%%i"
         for /f "tokens=* delims= " %%i in ("!V!") do set "V=%%i"
 
@@ -140,6 +143,15 @@ if "%AUTO_INSTALL_DEPS%"=="1" (
 
 set "UVICORN_CMD="!PYTHON_EXE!" -m uvicorn backend.main:app --host %HOST% --port %PORT%"
 if "%RELOAD%"=="1" set "UVICORN_CMD=!UVICORN_CMD! --reload"
+
+rem Check if port is already occupied and free it
+for /f "tokens=5" %%P in ('netstat -ano ^| findstr /R /C:":%PORT% .*LISTENING"') do (
+  if not "%%P"=="0" (
+    echo [WARN] Port %PORT% is in use by PID %%P. Terminating stale process...
+    taskkill /F /PID %%P >nul 2>nul
+    timeout /t 1 /nobreak >nul
+  )
+)
 
 echo [INFO] Starting backend at http://%HOST%:%PORT%
 start "Gentleman Mosaic Backend" cmd /k "cd /d ""%ROOT%"" && !UVICORN_CMD!"

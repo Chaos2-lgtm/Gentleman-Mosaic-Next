@@ -78,7 +78,7 @@ def read_launch_config() -> configparser.ConfigParser:
         return cfg
 
     try:
-        raw = LAUNCH_INI.read_text(encoding="utf-8")
+        raw = LAUNCH_INI.read_text(encoding="utf-8-sig")
     except Exception:
         raw = LAUNCH_INI.read_text(encoding="gbk", errors="ignore")
 
