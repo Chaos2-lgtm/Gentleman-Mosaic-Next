@@ -140,7 +140,7 @@ def discover_available_models() -> Dict[str, Dict[str, Any]]:
                         elif "anime_nsfw" in key or "ntd11" in key:
                             display_name = f"二次元動漫 ({p.name})"
                         elif "face" in key:
-                            display_name = f"人臉辨識 ({p.name})"
+                            display_name = f"人臉部位 ({p.name})"
 
                         models[key] = {
                             "id": key,
@@ -155,7 +155,7 @@ def discover_available_models() -> Dict[str, Dict[str, Any]]:
             models[m_id] = {
                 "id": m_id,
                 "filename": f"nudenet_{m_id}",
-                "name": f"NudeNet {m_id} (CPU 舊版)",
+                "name": f"NudeNet {m_id} (CPU 備用)",
                 "type": "nudenet",
             }
 
