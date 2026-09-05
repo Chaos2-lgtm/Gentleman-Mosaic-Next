@@ -29,3 +29,7 @@ stopping_process
 .ipynb_checkpoints
 *.spec
 .venv
+*.token
+*.key
+*apikey*
+apikey.txt
