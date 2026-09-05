@@ -69,7 +69,13 @@ if not exist "backend\main.py" (
 
 set "PYTHON_EXE="
 
-if "%USE_VENV%"=="1" (
+rem Priority 1: Check for portable embedded Python in project root (for portable release zip)
+if exist "%ROOT%python_embeded\python.exe" (
+  set "PYTHON_EXE=%ROOT%python_embeded\python.exe"
+  set "USE_VENV=0"
+  set "AUTO_INSTALL_DEPS=0"
+  echo [INFO] Detected portable embedded Python: !PYTHON_EXE!
+) else if "%USE_VENV%"=="1" (
   set "VENV_PY=%VENV_DIR%\Scripts\python.exe"
 
   if not exist "!VENV_PY!" (

@@ -35,4 +35,6 @@ stopping_process
 apikey.txt
 models/*.pt
 models/*.onnx
+python_embeded/
+python_embedded/
 
