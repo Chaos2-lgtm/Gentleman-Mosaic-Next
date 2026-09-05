@@ -1,8 +1,15 @@
-# 紳士打碼 v2.4.0
+# 紳士打碼 Next (Gentleman-Mosaic-Next) v2.4.0
 
-**原作者**: leeprinxin  
-**維護者**: Chaos2-lgtm (Gentleman-Mosaic-Next)  
-**License**: MIT
+- **當前維護者**: [Chaos2-lgtm](https://github.com/Chaos2-lgtm/Gentleman-Mosaic-Next) (Next 版)
+- **直接源自專案**: [yuuhouse/Gentleman-Mosaic-forge](https://github.com/yuuhouse/Gentleman-Mosaic-forge) (Forge 再版)
+- **初始原創專案**: [leeprinxin/Gentleman-Mosaic](https://github.com/leeprinxin/Gentleman-Mosaic) (最初原版)
+- **授權條款 (License)**: MIT
+
+## 專案沿革與致謝
+本專案為開源社群傳承與現代化重構版本，特別感謝歷任開發者的心血結晶：
+1. **最初原創**：[leeprinxin/Gentleman-Mosaic](https://github.com/leeprinxin/Gentleman-Mosaic) —— 奠定「小畫家式塗抹＋單層套用」的核心體驗與直覺設計。
+2. **二次開發 (Forge 版)**：[yuuhouse/Gentleman-Mosaic-forge](https://github.com/yuuhouse/Gentleman-Mosaic-forge) —— 本專案由此版本 Fork 而來，優化了 UI 比例與即時筆刷效能。
+3. **Next 版 (本專案)**：[Chaos2-lgtm/Gentleman-Mosaic-Next](https://github.com/Chaos2-lgtm/Gentleman-Mosaic-Next) —— 於 v2.4.0 進行全面現代化架構升級，加入完全脫離 ComfyUI 的本機獨立 AI (YOLO-seg) 實例分割精確塗抹、0 相依獨立免安裝發布包、深淺主題切換與雙語系 i18n 支援。
 
 ## 開發 / Vibe Coding 工具
 - **Google Antigravity**：接手後（v2.4.0+）全端架構重構、本地獨立 AI (YOLO-seg) 模型整合、雙語系 i18n 國際化、主題外觀系統與 0 相依獨立懶人發布包打包。
