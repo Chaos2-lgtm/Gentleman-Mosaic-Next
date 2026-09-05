@@ -1,12 +1,12 @@
-﻿# 紳士打碼 v2.3.2
+# 紳士打碼 v2.4.0
 
 **原作者**: leeprinxin  
-**GitHub**: https://github.com/leeprinxin  
+**維護者**: Chaos2-lgtm (Gentleman-Mosaic-Next)  
 **License**: MIT
 
 ## 開發 / Vibe Coding 工具
 - OpenAI Codex：協助功能整理、效能比較、README 文件撰寫與程式碼檢視。
-- Git：用於比對 `v2.1.0` 與最新版差異、追蹤版本變更。
+- Git：用於比對版本差異、追蹤版本變更。
 - Chrome Headless：用於執行 Canvas 操作體驗 benchmark，換算 FPS 與效能差異。
 
 ![紳士打碼 Logo](./assets/logo-Photoroom.png)
@@ -14,6 +14,14 @@
 ## 介面預覽
 ![UI Demo](./assets/UI.PNG)
 ![輸出示意圖](./assets/mosaic-output_GentlemanMosaic.png)
+
+### v2.4.0 (AI Next)
+- **本地獨立 AI 自動偵測敏感部位**：整合 Ultralytics YOLOv8/v11 引擎與 `sensitive_detect_v06.pt` 高精度模型，支援本機 GPU (CUDA) 極速推論，完全擺脫 ComfyUI 依賴。
+- **自訂部位篩選**：支援 4 大敏感目標部位勾選（女性私密處、男性私密處、胸部／乳頭、臀部／肛門）。
+- **敏感度動態拉條**：提供 0.01 ～ 1.00 敏感度閾值即時調節（預設 0.25），數值即時連動反饋。
+- **外觀主題三合一**：支援白色模式、深色模式以及隨系統自動切換，並新增左上角一鍵快速輪播切換鈕。
+- **完整雙語系支援**：介面各控制項、AI 面板、狀態提示及模型名稱全面支援繁體中文與 English 即時切換。
+- **專屬目錄動態掃描**：後端嚴格僅掃描專案目錄 `models/`，放入模型即時生效，絕不影響外部環境。
 
 ### v2.3.2 
 - 本次更新基於最新提交 `02ac597`：Overlay canvas for cursor & live-stroke
