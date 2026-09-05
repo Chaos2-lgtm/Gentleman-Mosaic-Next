@@ -11,7 +11,7 @@
 2. **二次開發 (Forge 版)**：[yuuhouse/Gentleman-Mosaic-forge](https://github.com/yuuhouse/Gentleman-Mosaic-forge) —— 本專案由此版本 Fork 而來，優化了 UI 比例與即時筆刷效能。
 3. **Next 版 (本專案)**：[Chaos2-lgtm/Gentleman-Mosaic-Next](https://github.com/Chaos2-lgtm/Gentleman-Mosaic-Next) —— 於 v2.4.0 進行全面現代化架構升級，加入本機獨立 AI (YOLO-seg) 實例分割精確塗抹、0 相依獨立免安裝發布包、深淺主題切換。
 
-> **AI 技術致謝**：本專案 AI 視覺功能由 [Ultralytics](https://github.com/ultralytics/ultralytics) 的 YOLO 技術基礎提供支援（AI 模型推論基於社群開源預訓練權重）。
+> **AI 技術與模型致謝**：本專案本機 AI 視覺功能由 [Ultralytics](https://github.com/ultralytics/ultralytics) 的 YOLO 架構提供底層技術基礎；檢測模型 `sensitive_detect_v06.pt` 源自 Hugging Face 創作者 [sugarknight/sensitive-detect](https://huggingface.co/sugarknight/sensitive-detect) 的開源成果，特此致謝開源 AI 社群的無私奉獻與分享。
 
 ## 開發 / Vibe Coding 工具
 - **Google Antigravity**：接手後（v2.4.0+）全端架構重構、本地獨立 AI (YOLO-seg) 模型整合、外觀主題系統與 0 相依獨立懶人發布包打包。
