@@ -111,15 +111,12 @@ def save_ui_settings_to_ini(language: str, theme: str) -> dict:
 def get_model_search_paths() -> List[Path]:
     paths = [
         ROOT_DIR / "models",
-        Path(r"D:\ComfyUI_windows_portable\ComfyUI\models\ultralytics"),
-        Path(r"D:\ComfyUI_windows_portable\ComfyUI\models\ultralytics\segm"),
-        Path(r"D:\ComfyUI_windows_portable\ComfyUI\models\ultralytics\bbox"),
-        Path(r"D:\ComfyUI_windows_portable\ComfyUI\models\yolo"),
     ]
     cfg = read_launch_config()
     if cfg.has_section("models") and "model_dir" in cfg["models"]:
-        custom_dir = Path(cfg["models"]["model_dir"])
-        if custom_dir.exists():
+        raw = cfg["models"]["model_dir"].strip()
+        custom_dir = (ROOT_DIR / raw) if not Path(raw).is_absolute() else Path(raw)
+        if custom_dir.exists() and custom_dir not in paths:
             paths.insert(0, custom_dir)
     return [p for p in paths if p.exists()]
 
