@@ -1,6 +1,6 @@
 # 紳士打碼 Next (Gentleman-Mosaic-Next) v2.4.0
 
-> ### 🚀 [點此立即前往下載 v2.4.0 懶人發布包 (1.95 GB)](https://github.com/Chaos2-lgtm/Gentleman-Mosaic-Next/releases/tag/v2.4.0)
+> ### 🚀 [點此立即前往下載 v2.4 懶人發布包 (僅 232 MB)](https://github.com/Chaos2-lgtm/Gentleman-Mosaic-Next/releases/tag/v2.4.0)
 > **完全 0 相依・免安裝 Python・免安裝 ComfyUI・解壓縮雙擊 start_app.bat 直接用！**
 
 - **當前維護者**: [Chaos2-lgtm](https://github.com/Chaos2-lgtm/Gentleman-Mosaic-Next) (Next 版)
@@ -35,7 +35,7 @@
 - **外觀主題三合一**：支援白色模式、深色模式以及隨系統自動切換（預設隨系統），並新增左上角一鍵快速輪播切換鈕。
 - **完整雙語系支援**：介面各控制項、AI 面板、狀態提示及模型名稱全面支援繁體中文與 English 即時切換。
 - **專屬目錄動態掃描**：後端嚴格僅掃描專案目錄 `models/`，放入模型即時生效，絕不影響外部環境。
-- **0 相依獨立懶人發布包**：單鍵啟動，免裝 Python、免裝 ComfyUI，壓縮後低於 2GB 完美適配 GitHub Releases。
+- **0 相依極致精簡懶人發布包**：單鍵啟動，免裝 Python、免裝 ComfyUI，體積從原本數 GB 徹底瘦身至壓縮包僅約 232 MB（解壓後不到 1 GB），純 CPU 亦能順暢運行。
 
 ### v2.3.2 
 - 本次更新基於最新提交 `02ac597`：Overlay canvas for cursor & live-stroke
