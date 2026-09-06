@@ -94,20 +94,58 @@
 - 選取模式：框選、塗抹（圓形/方形筆刷）
 - 支援深色模式與中英文介面切換
 
-## 系統需求
-- Windows（含 `.bat` 啟動流程）
-- Python 3.9+（建議 3.10+）
-- 可連網下載 Python 套件（第一次啟動時）
+## 🚀 安裝與啟動方式
 
-## 安裝與啟動（建議）
+本專案提供兩種使用方式：**免安裝懶人包（推薦）** 與 **自行建置環境（開發者）**。
 
-### 一鍵啟動（Standalone）
-1. 進入專案根目錄。
-2. 確認有下列檔案：`start_app.bat`、`config/launch.ini`、`standalone.html`。
-3. 直接雙擊 `start_app.bat`。
-4. 腳本會自動讀取設定、建立 `.venv`、安裝依賴、啟動後端，並開啟 `standalone.html`。
+### 方式 A：免安裝懶人包（推薦一般使用者）
+最省心、最快速的體驗方式，完全零相依：
+1. 前往 [Releases 頁面](https://github.com/Chaos2-lgtm/Gentleman-Mosaic-Next/releases) 下載最新版的 `Gentleman-Mosaic-Next-v2.4.0-portable.7z`。
+2. 使用 7-Zip 解壓縮至任一英文目錄。
+3. 雙擊執行目錄內的 **`start_app.bat`** 即可，免裝 Python、免裝微軟 C++ 運行庫，開箱即用！
 
-### `config/launch.ini` 主要設定
+---
+
+### 方式 B：自行建置環境（開發者 / 手動安裝指南）
+適合欲進行二次開發、客製化模型，或在非 Windows 平台（macOS / Linux）運行的開發者：
+
+#### 1. 克隆儲存庫
+```bash
+git clone https://github.com/Chaos2-lgtm/Gentleman-Mosaic-Next.git
+cd Gentleman-Mosaic-Next
+```
+
+#### 2. 建立並啟用 Python 虛擬環境（建議 Python 3.10 ~ 3.12）
+```bash
+# Windows
+python -m venv .venv
+.venv\Scripts\activate
+
+# macOS / Linux
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
+#### 3. 安裝後端依賴
+```bash
+pip install -r backend/requirements.txt
+```
+
+#### 4. 模型取得（自動或手動）
+- **自動下載**：後端首次啟動時，若 `models/` 為空，將自動自 Hugging Face 下載預設模型 `sensitive_detect_v06.pt`。
+- **手動下載**：亦可前往 [sugarknight/sensitive-detect](https://huggingface.co/sugarknight/sensitive-detect) 下載 `sensitive_detect_v06.pt` 並放置於專案根目錄的 `models/` 資料夾下。
+
+#### 5. 啟動服務
+- **Windows 一鍵啟動**：雙擊 `start_app.bat`。
+- **手動指令啟動**：
+  ```bash
+  python -m uvicorn backend.main:app --host 127.0.0.1 --port 7400
+  ```
+  啟動後以瀏覽器開啟專案中的 `standalone.html` 即可開始使用！
+
+---
+
+### `config/launch.ini` 設定說明
 ```ini
 [backend]
 enabled=1

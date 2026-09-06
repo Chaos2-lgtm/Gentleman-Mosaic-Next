@@ -9,6 +9,7 @@ from pathlib import Path
 import shutil
 import tempfile
 from typing import List, Optional, Dict, Any
+import urllib.request
 
 from fastapi import FastAPI, File, HTTPException, Query, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
@@ -134,6 +135,57 @@ def get_model_search_paths() -> List[Path]:
     return [p for p in paths if p.exists()]
 
 
+HF_DEFAULT_MODEL_URL = "https://huggingface.co/sugarknight/sensitive-detect/resolve/main/sensitive_detect_v06.pt"
+DEFAULT_MODEL_NAME = "sensitive_detect_v06.pt"
+
+
+def ensure_default_model() -> Optional[Path]:
+    if not HAS_YOLO:
+        return None
+    models_dir = ROOT_DIR / "models"
+    models_dir.mkdir(parents=True, exist_ok=True)
+    target_path = models_dir / DEFAULT_MODEL_NAME
+
+    if target_path.exists() and target_path.stat().st_size > 1024 * 1024:
+        return target_path
+
+    print(f"[INFO] 偵測到尚未下載預設模型，正在從 Hugging Face 自動下載: {DEFAULT_MODEL_NAME} ...")
+    tmp_path = target_path.with_suffix(".tmp")
+    try:
+        req = urllib.request.Request(
+            HF_DEFAULT_MODEL_URL,
+            headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
+        )
+        with urllib.request.urlopen(req) as resp, open(tmp_path, "wb") as out_f:
+            total_size = int(resp.headers.get("Content-Length", 0))
+            downloaded = 0
+            chunk_size = 1024 * 1024
+            while True:
+                chunk = resp.read(chunk_size)
+                if not chunk:
+                    break
+                out_f.write(chunk)
+                downloaded += len(chunk)
+                if total_size:
+                    pct = int(downloaded / total_size * 100)
+                    print(f"\r[INFO] 模型下載進度: {pct}% ({downloaded // (1024*1024)}MB / {total_size // (1024*1024)}MB)", end="", flush=True)
+            print("\n[INFO] 預設模型 sensitive_detect_v06.pt 下載完成！")
+
+        if tmp_path.exists():
+            if target_path.exists():
+                target_path.unlink()
+            tmp_path.rename(target_path)
+            return target_path
+    except Exception as e:
+        print(f"\n[WARN] 自動下載模型失敗: {e}")
+        if tmp_path.exists():
+            try:
+                tmp_path.unlink()
+            except OSError:
+                pass
+    return None
+
+
 def discover_available_models() -> Dict[str, Dict[str, Any]]:
     models = {}
 
@@ -159,6 +211,18 @@ def discover_available_models() -> Dict[str, Dict[str, Any]]:
                             "name": display_name,
                             "type": "yolo",
                         }
+
+        # If no YOLO models found, attempt auto-downloading default sensitive_detect_v06
+        if not models:
+            auto_pt = ensure_default_model()
+            if auto_pt and auto_pt.exists():
+                models["sensitive_detect_v06"] = {
+                    "id": "sensitive_detect_v06",
+                    "filename": auto_pt.name,
+                    "path": str(auto_pt),
+                    "name": f"通用高精度 ({auto_pt.name})",
+                    "type": "yolo",
+                }
 
     if HAS_NUDENET:
         for m_id, res in MODEL_RESOLUTION.items():
@@ -192,6 +256,11 @@ def load_yolo_model(model_key_or_path: str):
             if model_key_or_path.lower() in k or k in model_key_or_path.lower():
                 model_path = v.get("path")
                 break
+
+    if not model_path and ("sensitive_detect" in model_key_or_path.lower() or not available):
+        auto_pt = ensure_default_model()
+        if auto_pt and auto_pt.exists():
+            model_path = str(auto_pt)
 
     if not model_path:
         raise FileNotFoundError(f"YOLO model not found for: {model_key_or_path}")
