@@ -67,6 +67,13 @@ if [ ! -d "$VENV_DIR" ]; then
         exit 1
     fi
 
+    echo "[INFO] 安裝輕量 CPU 版 PyTorch (約 180 MB，避免下載數 GB 冗餘套件)..."
+    "$VENV_DIR/bin/pip" install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+    if [ $? -ne 0 ]; then
+        echo "[ERROR] PyTorch 安裝失敗。"
+        exit 1
+    fi
+
     echo "[INFO] 安裝後端相依套件 (backend/requirements.txt)..."
     "$VENV_DIR/bin/pip" install -r backend/requirements.txt
     if [ $? -ne 0 ]; then
