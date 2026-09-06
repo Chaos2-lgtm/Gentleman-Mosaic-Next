@@ -1,6 +1,6 @@
 # 紳士打碼 Next (Gentleman-Mosaic-Next) v2.4.0
 
-> ### 🚀 [點此立即前往下載 v2.4 懶人發布包 (僅 232 MB)](https://github.com/Chaos2-lgtm/Gentleman-Mosaic-Next/releases/tag/v2.4.0)
+> ### 🚀 [點此立即前往下載 v2.4.0 懶人發布包 (僅 232 MB)](https://github.com/Chaos2-lgtm/Gentleman-Mosaic-Next/releases/tag/v2.4.0)
 > **完全 0 相依・免安裝 Python・免安裝 ComfyUI・解壓縮雙擊 start_app.bat 直接用！**
 
 - **當前維護者**: [Chaos2-lgtm](https://github.com/Chaos2-lgtm/Gentleman-Mosaic-Next) (Next 版)
