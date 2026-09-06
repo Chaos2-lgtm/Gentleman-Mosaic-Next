@@ -1,7 +1,7 @@
 # 紳士打碼 Next (Gentleman-Mosaic-Next) v2.4.0
 
 > ### 🚀 [點此立即前往下載 v2.4.0 懶人發布包 (僅 232 MB)](https://github.com/Chaos2-lgtm/Gentleman-Mosaic-Next/releases/tag/v2.4.0)
-> **完全 0 相依・免安裝 Python・免安裝 ComfyUI・解壓縮雙擊 start_app.bat 直接用！**
+> **完全 0 相依・免安裝 Python・解壓縮雙擊 start_app.bat 直接用！**
 
 - **當前維護者**: [Chaos2-lgtm](https://github.com/Chaos2-lgtm/Gentleman-Mosaic-Next) (Next 版)
 - **直接源自專案**: [yuuhouse/Gentleman-Mosaic-forge](https://github.com/yuuhouse/Gentleman-Mosaic-forge) (Forge 再版)
@@ -27,14 +27,14 @@
 ![UI Demo](./assets/UI.PNG)
 ![輸出示意圖](./assets/mosaic-output_GentlemanMosaic.png)
 ### v2.4.0 (AI Next)
-- **本地獨立 AI 自動偵測敏感部位**：整合 Ultralytics YOLOv8/v11 引擎與 `sensitive_detect_v06.pt` 高精度模型，純 CPU 亦可極速推論（1080p 全高清照片僅約 0.39 秒），完全擺脫 ComfyUI 依賴。
+- **本地獨立 AI 自動偵測敏感部位**：整合 Ultralytics YOLOv8/v11 引擎與 `sensitive_detect_v06.pt` 高精度模型，純 CPU 亦可極速推論（1080p 全高清照片僅約 0.39 秒）。
 - **精確塗抹 vs 矩形框選**：支援實例分割多邊形（YOLO-seg），AI 偵測直接貼合器官真實邊緣精確塗抹（預設），並可隨時手動以畫布筆刷（加選 / 減選）微調。
 - **自訂部位篩選**：支援 4 大敏感目標部位勾選（女性私密處、男性私密處、胸部／乳頭、臀部／肛門）。
 - **敏感度動態拉條**：提供 0.01 ～ 1.00 敏感度閾值即時調節（預設 0.25），數值即時連動反饋。
 - **外觀主題三合一**：支援白色模式、深色模式以及隨系統自動切換（預設隨系統），並新增左上角一鍵快速輪播切換鈕。
 - **完整雙語系支援**：介面各控制項、AI 面板、狀態提示及模型名稱全面支援繁體中文與 English 即時切換。
 - **專屬目錄動態掃描**：後端嚴格僅掃描專案目錄 `models/`，放入模型即時生效，絕不影響外部環境。
-- **0 相依極致精簡懶人發布包**：單鍵啟動，免裝 Python、免裝 ComfyUI，體積從原本數 GB 徹底瘦身至壓縮包僅約 232 MB（解壓後不到 1 GB），純 CPU 亦能順暢運行。
+- **0 相依極致精簡懶人發布包**：單鍵啟動，免安裝 Python，體積從原本數 GB 徹底瘦身至壓縮包僅約 232 MB（解壓後不到 1 GB），純 CPU 亦能順暢運行。
 
 ### v2.3.2 
 - 本次更新基於最新提交 `02ac597`：Overlay canvas for cursor & live-stroke
