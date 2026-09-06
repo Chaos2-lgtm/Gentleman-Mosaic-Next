@@ -135,10 +135,16 @@ pip install -r backend/requirements.txt
 - **手動下載**：亦可前往 [sugarknight/sensitive-detect](https://huggingface.co/sugarknight/sensitive-detect) 下載 `sensitive_detect_v06.pt` 並放置於專案根目錄的 `models/` 資料夾下。
 
 #### 5. 啟動服務
-- **Windows 一鍵啟動**：雙擊 `start_app.bat`。
-- **手動指令啟動**：
+- **一鍵腳本啟動（推薦）**：
+  - **Windows**：直接雙擊 `start_app.bat`。
+  - **macOS / Linux**：執行 `bash start_app.sh`（會自動檢測環境、喚醒後端並呼叫瀏覽器）。
+- **手動指令啟動**（直接指名虛擬環境路徑，免除每次手動 activate 的繁瑣）：
   ```bash
-  python -m uvicorn backend.main:app --host 127.0.0.1 --port 7400
+  # Windows
+  .venv\Scripts\python -m uvicorn backend.main:app --host 127.0.0.1 --port 7400
+
+  # macOS / Linux
+  .venv/bin/python -m uvicorn backend.main:app --host 127.0.0.1 --port 7400
   ```
   啟動後以瀏覽器開啟專案中的 `standalone.html` 即可開始使用！
 
