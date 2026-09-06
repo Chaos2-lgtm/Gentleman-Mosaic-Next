@@ -26,9 +26,8 @@
 ## 介面預覽
 ![UI Demo](./assets/UI.PNG)
 ![輸出示意圖](./assets/mosaic-output_GentlemanMosaic.png)
-
 ### v2.4.0 (AI Next)
-- **本地獨立 AI 自動偵測敏感部位**：整合 Ultralytics YOLOv8/v11 引擎與 `sensitive_detect_v06.pt` 高精度模型，支援本機 GPU (CUDA) 極速推論，完全擺脫 ComfyUI 依賴。
+- **本地獨立 AI 自動偵測敏感部位**：整合 Ultralytics YOLOv8/v11 引擎與 `sensitive_detect_v06.pt` 高精度模型，純 CPU 亦可極速推論（1080p 全高清照片僅約 0.39 秒），完全擺脫 ComfyUI 依賴。
 - **精確塗抹 vs 矩形框選**：支援實例分割多邊形（YOLO-seg），AI 偵測直接貼合器官真實邊緣精確塗抹（預設），並可隨時手動以畫布筆刷（加選 / 減選）微調。
 - **自訂部位篩選**：支援 4 大敏感目標部位勾選（女性私密處、男性私密處、胸部／乳頭、臀部／肛門）。
 - **敏感度動態拉條**：提供 0.01 ～ 1.00 敏感度閾值即時調節（預設 0.25），數值即時連動反饋。
