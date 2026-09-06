@@ -1,3 +1,7 @@
+import warnings
+warnings.filterwarnings("ignore", category=FutureWarning)
+warnings.filterwarnings("ignore", message=".*pynvml.*")
+
 from functools import lru_cache
 import configparser
 import os
@@ -27,20 +31,26 @@ LAUNCH_INI = ROOT_DIR / "config" / "launch.ini"
 # Device detection for PyTorch
 DEVICE = "cpu"
 GPU_NAME = "CPU"
+_torch_error = None
 try:
     import torch
     if torch.cuda.is_available():
         DEVICE = "cuda:0"
         GPU_NAME = torch.cuda.get_device_name(0)
-except Exception:
-    pass
+except Exception as e:
+    _torch_error = str(e)
 
 # Try importing Ultralytics YOLO
+_yolo_error = None
 try:
     from ultralytics import YOLO
     HAS_YOLO = True
-except Exception:
+except Exception as e:
     HAS_YOLO = False
+    _yolo_error = str(e)
+    print(f"[警告] Ultralytics YOLO 載入失敗: {e}")
+    if "DLL" in str(e) or "126" in str(e):
+        print("[提示] 系統可能缺少微軟 Visual C++ 運行庫，可至此下載: https://aka.ms/vs/17/release/vc_redist.x64.exe")
 
 # Try importing NudeNet
 try:
@@ -164,7 +174,8 @@ def discover_available_models() -> Dict[str, Dict[str, Any]]:
 
 def load_yolo_model(model_key_or_path: str):
     if not HAS_YOLO:
-        raise RuntimeError("Ultralytics YOLO is not installed.")
+        detail = f"原因: {_yolo_error}" if _yolo_error else "未安裝 ultralytics 模組"
+        raise RuntimeError(f"Ultralytics YOLO 引擎未載入 ({detail})。若系統缺少 C++ 運行庫請安裝: https://aka.ms/vs/17/release/vc_redist.x64.exe")
 
     if model_key_or_path in _loaded_yolo_models:
         return _loaded_yolo_models[model_key_or_path]
@@ -207,6 +218,8 @@ def health():
         "gpu_name": GPU_NAME,
         "has_yolo": HAS_YOLO,
         "has_nudenet": HAS_NUDENET,
+        "yolo_error": _yolo_error,
+        "torch_error": _torch_error,
         "models_count": len(models),
         "available_models": list(models.values()),
     }
@@ -284,7 +297,10 @@ async def detect_nsfw(
         out = []
 
         if chosen_type == "yolo":
-            yolo_model = load_yolo_model(model)
+            try:
+                yolo_model = load_yolo_model(model)
+            except Exception as e:
+                raise HTTPException(status_code=500, detail=str(e))
             results = yolo_model(tmp_path, conf=threshold, device=DEVICE, verbose=False)
 
             for r in results:

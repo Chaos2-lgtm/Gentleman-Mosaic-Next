@@ -77,6 +77,7 @@ if exist "%ROOT%python_embeded\python.exe" (
   set "PYTHON_EXE=%ROOT%python_embeded\python.exe"
   set "USE_VENV=0"
   set "AUTO_INSTALL_DEPS=0"
+  set "PATH=%ROOT%python_embeded;%ROOT%python_embeded\Lib\site-packages\torch\lib;!PATH!"
   echo [INFO] Detected portable embedded Python: !PYTHON_EXE!
 ) else if "%USE_VENV%"=="1" (
   set "VENV_PY=%VENV_DIR%\Scripts\python.exe"
