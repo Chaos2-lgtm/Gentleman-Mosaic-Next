@@ -79,6 +79,12 @@ if exist "%ROOT%python_embeded\python.exe" (
   set "AUTO_INSTALL_DEPS=0"
   set "PATH=%ROOT%python_embeded;%ROOT%python_embeded\Lib\site-packages\torch\lib;!PATH!"
   echo [INFO] Detected portable embedded Python: !PYTHON_EXE!
+) else if exist "%ROOT%%VENV_DIR%\Scripts\python.exe" (
+  set "PYTHON_EXE=%ROOT%%VENV_DIR%\Scripts\python.exe"
+  echo [INFO] Detected local virtual environment: !PYTHON_EXE!
+) else if exist "%VENV_DIR%\Scripts\python.exe" (
+  set "PYTHON_EXE=%VENV_DIR%\Scripts\python.exe"
+  echo [INFO] Detected local virtual environment: !PYTHON_EXE!
 ) else if "%USE_VENV%"=="1" (
   set "VENV_PY=%VENV_DIR%\Scripts\python.exe"
 
@@ -92,7 +98,10 @@ if exist "%ROOT%python_embeded\python.exe" (
     set "BOOTSTRAP="
     call %PYTHON_CMD% -V >nul 2>nul && set "BOOTSTRAP=%PYTHON_CMD%"
     if not defined BOOTSTRAP (
-      call py -3 -V >nul 2>nul && set "BOOTSTRAP=py -3"
+      call python -V >nul 2>nul && set "BOOTSTRAP=python"
+    )
+    if not defined BOOTSTRAP (
+      call py -V >nul 2>nul && set "BOOTSTRAP=py"
     )
     if not defined BOOTSTRAP (
       echo [ERROR] Cannot create venv. Python not found.
@@ -122,7 +131,10 @@ if exist "%ROOT%python_embeded\python.exe" (
   ) else (
     call "!PYTHON_CMD!" -V >nul 2>nul && set "PYTHON_EXE=!PYTHON_CMD!"
     if not defined PYTHON_EXE (
-      call py -3 -V >nul 2>nul && set "PYTHON_EXE=py -3"
+      call python -V >nul 2>nul && set "PYTHON_EXE=python"
+    )
+    if not defined PYTHON_EXE (
+      call py -V >nul 2>nul && set "PYTHON_EXE=py"
     )
     if not defined PYTHON_EXE (
       echo [ERROR] Python not found.
@@ -155,7 +167,7 @@ for /f "tokens=5" %%P in ('netstat -ano ^| findstr /R /C:":%PORT% .*LISTENING"')
 )
 
 echo [INFO] Starting backend at http://%HOST%:%PORT%
-start "Gentleman Mosaic Backend" cmd /k "cd /d ""%ROOT%"" && !UVICORN_CMD!"
+start "Gentleman Mosaic Backend" cmd /k "cd /d "%ROOT%" && !UVICORN_CMD!"
 
 if exist "standalone.html" (
   echo [INFO] Opening standalone.html
