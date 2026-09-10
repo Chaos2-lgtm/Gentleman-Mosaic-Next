@@ -24,6 +24,7 @@
 ![紳士打碼 Logo](./assets/logo-Photoroom.png)
 
 ## 介面預覽
+![UI Demo v2.4.1](./assets/UI-v2.4.1.png)
 ![UI Demo](./assets/UI.PNG)
 ![輸出示意圖](./assets/mosaic-output_GentlemanMosaic.png)
 
