@@ -1,6 +1,6 @@
-# 紳士打碼 Next (Gentleman-Mosaic-Next) v2.4.0
+# 紳士打碼 Next (Gentleman-Mosaic-Next) v2.4.1
 
-> ### 🚀 [點此立即前往下載 v2.4.0 懶人發布包 (僅 232 MB)](https://github.com/Chaos2-lgtm/Gentleman-Mosaic-Next/releases/tag/v2.4.0)
+> ### 🚀 [點此立即前往下載 v2.4.1 懶人發布包 (僅 232 MB)](https://github.com/Chaos2-lgtm/Gentleman-Mosaic-Next/releases/tag/v2.4.1)
 > **完全 0 相依・免安裝 Python・解壓縮雙擊 start_app.bat 直接用！**
 
 - **當前維護者**: [Chaos2-lgtm](https://github.com/Chaos2-lgtm/Gentleman-Mosaic-Next) (Next 版)
@@ -26,6 +26,12 @@
 ## 介面預覽
 ![UI Demo](./assets/UI.PNG)
 ![輸出示意圖](./assets/mosaic-output_GentlemanMosaic.png)
+
+### v2.4.1 (Batch AI & UX Enhancement)
+- **⚡ 批次 AI 打碼框選**：支援一鍵對上傳的批次（最多 30 張）圖片自動執行敏感部位 AI 偵測，可搭配「偵測後自動打碼」或手動逐張檢視微調。
+- **全圖自適應視圖與切換置中**：點選與切換批次圖片時自動根據視窗比例縮放並置中，不再預設 100% 溢出；若手動放大檢視則智慧保留個別圖片視角。
+- **海苔色票高對比選取框**：海苔顏色選取外框與圖片縮圖選取框同步改為高辨識度亮粉色霓虹光暈，深色模式下選取純黑等深色色票一目了然。
+
 ### v2.4.0 (AI Next)
 - **本地獨立 AI 自動偵測敏感部位**：整合 Ultralytics YOLOv8/v11 引擎與 `sensitive_detect_v06.pt` 高精度模型，純 CPU 亦可極速推論（1080p 全高清照片僅約 0.39 秒）。
 - **精確塗抹 vs 矩形框選**：支援實例分割多邊形（YOLO-seg），AI 偵測直接貼合器官真實邊緣精確塗抹（預設），並可隨時手動以畫布筆刷（加選 / 減選）微調。
@@ -99,7 +105,7 @@
 
 ### 方式 A：免安裝懶人包（推薦一般使用者）
 最省心、最快速的體驗方式，完全零相依：
-1. 前往 [Releases 頁面](https://github.com/Chaos2-lgtm/Gentleman-Mosaic-Next/releases) 下載最新版的 `Gentleman-Mosaic-Next-v2.4.0-portable.7z`。
+1. 前往 [Releases 頁面](https://github.com/Chaos2-lgtm/Gentleman-Mosaic-Next/releases) 下載最新版的 `Gentleman-Mosaic-Next-v2.4.1-portable.7z`。
 2. 使用 7-Zip 解壓縮至任一英文目錄。
 3. 雙擊執行目錄內的 **`start_app.bat`** 即可，免裝 Python、免裝微軟 C++ 運行庫，開箱即用！
 
