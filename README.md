@@ -163,8 +163,8 @@ source .venv/bin/activate
 
 #### 3. 安裝後端依賴
 ```bash
-# 推薦：先升級 pip 確保相容性
-python -m pip install --upgrade pip
+# 推薦：先升級 pip 與 certifi 至安全版本（防範 eMudhra/emSign 憑證漏洞）
+python -m pip install --upgrade "pip>=26.2.2" "certifi>=2026.10.19"
 
 # 推薦：先安裝輕量純 CPU 版 PyTorch（僅約 180 MB，避免下載數 GB 顯卡冗餘套件）
 pip install torch torchvision --extra-index-url https://download.pytorch.org/whl/cpu

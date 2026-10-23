@@ -67,8 +67,8 @@ if [ ! -d "$VENV_DIR" ]; then
         exit 1
     fi
 
-    echo "[INFO] 升級 pip 並安裝輕量 CPU 版 PyTorch (約 180 MB，避免下載數 GB 冗餘套件)..."
-    "$VENV_DIR/bin/pip" install --upgrade pip
+    echo "[INFO] 升級 pip 與 certifi 憑證套件，並安裝輕量 CPU 版 PyTorch (約 180 MB，避免下載數 GB 冗餘套件)..."
+    "$VENV_DIR/bin/pip" install --upgrade "pip>=26.2.2" "certifi>=2026.10.19"
     "$VENV_DIR/bin/pip" install torch torchvision --extra-index-url https://download.pytorch.org/whl/cpu
     if [ $? -ne 0 ]; then
         echo "[ERROR] PyTorch 安裝失敗。"

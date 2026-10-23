@@ -146,6 +146,7 @@ if exist "%ROOT%python_embeded\python.exe" (
 
 if "%AUTO_INSTALL_DEPS%"=="1" (
   echo [INFO] Installing backend dependencies...
+  call "!PYTHON_EXE!" -m pip install --upgrade "pip>=26.2.2" "certifi>=2026.10.19"
   call "!PYTHON_EXE!" -m pip install -r backend\requirements.txt
   if errorlevel 1 (
     echo [ERROR] pip install failed.
